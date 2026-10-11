@@ -100,6 +100,10 @@
       <HintPath>..\..\..\..\B0000\Bin\Debug\Obic7.3.0.Win.B0000.Tool.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Obic7.3.0.Win.P0000.Tool.Search">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />

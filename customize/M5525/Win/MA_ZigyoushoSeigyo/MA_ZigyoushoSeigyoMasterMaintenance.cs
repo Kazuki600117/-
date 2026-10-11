@@ -5,6 +5,7 @@
 //                          事業所別制御マスタ(M5525MS_MA_ZigyoushoSeigyo)に登録する
 //                        ・消費税計算方式が未入力の区分は、財務コントロールマスタの値に従う
 //                        ・画面構成・操作は資産事業所マスタメンテ(N0000)に合わせる
+//                        ・取引先コードは取引先マスタ(P0000MS_Torihikisaki)の存在チェック(基準日時点の改定)と検索(F4)を行う
 //
 
 using System;
@@ -19,6 +20,7 @@ using ComTool = Obic7fx.Com.A0000.Tool;
 using ComToolLogic = Obic7fx.Com.A0000.Tool.Logic;
 using M0000Search = Obic7fx.Win.M0000.Tool.Search;
 using M0000SearchCom = Obic7fx.Win.M0000.Tool.SearchCom;
+using P0000Search = Obic7fx.Win.P0000.Tool.Search;
 
 namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
 {
@@ -238,6 +240,22 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             return sqlSelect.ToString();
         }
 
+        /// SQL文生成（取引先マスタ存在チェック用）
+        /// <summary>
+        /// SQL文生成（取引先マスタ存在チェック用）
+        /// 基準日以前の改定が存在する取引先を有効とする
+        /// </summary>
+        /// <returns>生成したSQL文</returns>
+        private string MakeSQLExistsTorihikisaki()
+        {
+            StringBuilder sqlSelect = new StringBuilder();
+            sqlSelect.AppendLine(" SELECT COUNT(*) ");
+            sqlSelect.AppendLine(" FROM   P0000MS_Torihikisaki ");
+            sqlSelect.AppendLine(" WHERE  TorihikisakiCD = " + ComTool.Function.SqlEscapeVarchar(this.obic7TextStringTorihikisakiCD.Value) + " ");
+            sqlSelect.AppendLine("   AND  TorihikisakiKaiteiDate <= " + ComTool.Function.SqlEscapeDatetime(this.obic7TextDatetimeBaseDate.Value) + " ");
+            return sqlSelect.ToString();
+        }
+
         /// 数値をSQLの値に変換（未入力はNULL）
         /// <summary>
         /// 数値をSQLの値に変換（未入力はNULL）
@@ -362,6 +380,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Enabled = isEnabled;
             //取引先
             this.obic7TextStringTorihikisakiCD.Enabled = isEnabled;
+            this.obic7ButtonWithLogicTorihikisakiCDSearch.Enabled = isEnabled;
 
             if (isNeedClear)
             {
@@ -563,6 +582,19 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                     }
                 }
             }
+            else if (textAbstract.Name == "obic7TextStringTorihikisakiCD")
+            {
+                using (P0000Search.TorihikisakiCD torihikisakiCDdlg = new P0000Search.TorihikisakiCD())
+                {
+                    textAbstract.AttachedSearchDialog = torihikisakiCDdlg;
+                    if (textAbstract.ShowDialog() == DialogResult.OK)
+                    {
+                        //OK押下時、次の項目へフォーカスを移動
+                        base.SelectNextInputControl(true);
+                        return;
+                    }
+                }
+            }
             //検索実行がなかった場合は直前のコントロールにフォーカスを移動させる
             this.PrevControl.Focus();
         }
@@ -748,6 +780,24 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             {
                 //F3,F5,F10,F12使用可
                 base.SetFunctionButton(false, false, true, false, true, false, false, false, false, true, false, true);
+            }
+        }
+
+        /// 明細部（検索有）ファンクションボタン制御
+        /// <summary>
+        /// 明細部（検索有）ファンクションボタン制御
+        /// </summary>
+        private void SetFunctionButtonDetailSearch()
+        {
+            if (this.obic7LabelStringMode.Text == MODE_INSERT)
+            {
+                //F4,F5,F10,F12使用可
+                base.SetFunctionButton(false, false, false, true, true, false, false, false, false, true, false, true);
+            }
+            else if (this.obic7LabelStringMode.Text == MODE_UPDATE)
+            {
+                //F3,F4,F5,F10,F12使用可
+                base.SetFunctionButton(false, false, true, true, true, false, false, false, false, true, false, true);
             }
         }
 
@@ -983,6 +1033,41 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private void controlDetail_Enter(object sender, EventArgs e)
         {
             SetFunctionButtonDetail();
+        }
+
+        /// 明細部（検索ボタン有）フォーカス取得時の処理
+        private void controlDetailSearch_Enter(object sender, EventArgs e)
+        {
+            SetFunctionButtonDetailSearch();
+        }
+
+        /// 取引先コード_検索ボタン押下時の処理
+        private void obic7ButtonWithLogicTorihikisakiCDSearch_Click(object sender, EventArgs e)
+        {
+            this.obic7TextStringTorihikisakiCD.Focus();
+            this.obic7ToolStripButtonWithLogicF4.PerformClick();
+        }
+
+        /// 取引先コードValidating
+        /// <summary>
+        /// 取引先コードValidating(取引先マスタの存在チェック。基準日時点で有効な改定があること)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void obic7TextStringTorihikisakiCD_Validating(object sender, CancelEventArgs e)
+        {
+            WinToolUI.Obic7ErrorProvider.Clear(this.obic7TextStringTorihikisakiCD);
+
+            if (String.IsNullOrEmpty(this.obic7TextStringTorihikisakiCD.Value))
+            {
+                return;
+            }
+
+            if (ComTool.Function.AnyToInt32(this.businessDB.ExecuteScalar(MakeSQLExistsTorihikisaki())) == 0)
+            {
+                WinToolUI.Obic7ErrorProvider.SetError(this.obic7TextStringTorihikisakiCD, "取引先マスタに存在しない取引先コードです(基準日時点)。");
+                e.Cancel = true;
+            }
         }
 
         #endregion

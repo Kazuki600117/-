@@ -12,3 +12,16 @@
 **/NA_SisanZigyousho/Properties/*.cs      !working-tree-encoding
 **/NA_SisanZigyousho/Properties/*.resx    -text
 **/NA_SisanZigyousho/Properties/*.settings -text
+
+# 消費税申告管理・事業所別制御マスタメンテは .cs の一部が UTF-8(BOM付き) のため、CP932 変換の対象外とする
+**/MA_ShouhizeiSinkokusho/*.Designer.cs              !working-tree-encoding
+**/MA_ShouhizeiSinkokusho/MA_ShouhizeiSinkokusho_*.cs !working-tree-encoding
+**/MA_ShouhizeiSinkokusho/Program.cs                 !working-tree-encoding
+**/MA_ShouhizeiSinkokusho/Properties/*.cs            !working-tree-encoding
+**/MA_ShouhizeiSinkokusho/Properties/*.resx          -text
+**/MA_ShouhizeiSinkokusho/Properties/*.settings      -text
+**/MA_ZigyoushoSeigyo/*.Designer.cs                  !working-tree-encoding
+**/MA_ZigyoushoSeigyo/Program.cs                     !working-tree-encoding
+**/MA_ZigyoushoSeigyo/Properties/*.cs                !working-tree-encoding
+**/MA_ZigyoushoSeigyo/Properties/*.resx              -text
+**/MA_ZigyoushoSeigyo/Properties/*.settings          -text

@@ -266,14 +266,12 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             // obic7LabelStringUriageZeiTumiageKBNCaption
             // 
             this.obic7LabelStringUriageZeiTumiageKBNCaption.AutoEllipsis = true;
-            this.obic7LabelStringUriageZeiTumiageKBNCaption.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.obic7LabelStringUriageZeiTumiageKBNCaption.ColumnNumber = 0;
             this.obic7LabelStringUriageZeiTumiageKBNCaption.EnableFalseLock = false;
             this.obic7LabelStringUriageZeiTumiageKBNCaption.ErrorString = null;
-            this.obic7LabelStringUriageZeiTumiageKBNCaption.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.obic7LabelStringUriageZeiTumiageKBNCaption.Location = new System.Drawing.Point(6, 24);
             this.obic7LabelStringUriageZeiTumiageKBNCaption.Name = "obic7LabelStringUriageZeiTumiageKBNCaption";
-            this.obic7LabelStringUriageZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.NormalLabel;
+            this.obic7LabelStringUriageZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.RequiredLabel;
             this.obic7LabelStringUriageZeiTumiageKBNCaption.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
             this.obic7LabelStringUriageZeiTumiageKBNCaption.Size = new System.Drawing.Size(210, 19);
             this.obic7LabelStringUriageZeiTumiageKBNCaption.TabIndex = 1000000101;
@@ -357,14 +355,12 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             // obic7LabelStringSiireZeiTumiageKBNCaption
             // 
             this.obic7LabelStringSiireZeiTumiageKBNCaption.AutoEllipsis = true;
-            this.obic7LabelStringSiireZeiTumiageKBNCaption.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.obic7LabelStringSiireZeiTumiageKBNCaption.ColumnNumber = 0;
             this.obic7LabelStringSiireZeiTumiageKBNCaption.EnableFalseLock = false;
             this.obic7LabelStringSiireZeiTumiageKBNCaption.ErrorString = null;
-            this.obic7LabelStringSiireZeiTumiageKBNCaption.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.obic7LabelStringSiireZeiTumiageKBNCaption.Location = new System.Drawing.Point(6, 48);
             this.obic7LabelStringSiireZeiTumiageKBNCaption.Name = "obic7LabelStringSiireZeiTumiageKBNCaption";
-            this.obic7LabelStringSiireZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.NormalLabel;
+            this.obic7LabelStringSiireZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.RequiredLabel;
             this.obic7LabelStringSiireZeiTumiageKBNCaption.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
             this.obic7LabelStringSiireZeiTumiageKBNCaption.Size = new System.Drawing.Size(210, 19);
             this.obic7LabelStringSiireZeiTumiageKBNCaption.TabIndex = 1000000103;
@@ -448,14 +444,12 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             // obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption
             // 
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.AutoEllipsis = true;
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.ColumnNumber = 0;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.EnableFalseLock = false;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.ErrorString = null;
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Location = new System.Drawing.Point(6, 72);
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Name = "obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption";
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.NormalLabel;
+            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.RequiredLabel;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Size = new System.Drawing.Size(210, 19);
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.TabIndex = 1000000105;
@@ -539,14 +533,12 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             // obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption
             // 
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.AutoEllipsis = true;
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.ColumnNumber = 0;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.EnableFalseLock = false;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.ErrorString = null;
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Location = new System.Drawing.Point(6, 96);
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Name = "obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption";
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.NormalLabel;
+            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.RequiredLabel;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Size = new System.Drawing.Size(210, 19);
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.TabIndex = 1000000107;

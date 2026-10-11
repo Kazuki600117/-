@@ -5,7 +5,7 @@
 //                          事業所別制御マスタ(M5525MS_MA_ZigyoushoSeigyo)に登録する
 //                        ・消費税計算方式が未入力の区分は、財務コントロールマスタの値に従う
 //                        ・画面構成・操作は資産事業所マスタメンテ(N0000)に合わせる
-//                        ・取引先コードは取引先マスタ(P0000MS_Torihikisaki)の存在チェック(基準日時点の改定)と検索(F4)を行う
+//                        ・取引先コードは取引先マスタ(P0000MS_Torihikisaki)の存在チェック・取引先名表示(基準日時点の改定)と検索(F4)を行う
 //
 
 using System;
@@ -240,20 +240,55 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             return sqlSelect.ToString();
         }
 
-        /// SQL文生成（取引先マスタ存在チェック用）
+        /// SQL文生成（取引先マスタ取得用）
         /// <summary>
-        /// SQL文生成（取引先マスタ存在チェック用）
-        /// 基準日以前の改定が存在する取引先を有効とする
+        /// SQL文生成（取引先マスタ取得用）
+        /// 基準日以前で最新の改定の取引先名を取得する
         /// </summary>
         /// <returns>生成したSQL文</returns>
-        private string MakeSQLExistsTorihikisaki()
+        private string MakeSQLSelectTorihikisaki()
         {
             StringBuilder sqlSelect = new StringBuilder();
-            sqlSelect.AppendLine(" SELECT COUNT(*) ");
+            sqlSelect.AppendLine(" SELECT TOP 1 ");
+            sqlSelect.AppendLine("        TorihikisakiName ");
             sqlSelect.AppendLine(" FROM   P0000MS_Torihikisaki ");
             sqlSelect.AppendLine(" WHERE  TorihikisakiCD = " + ComTool.Function.SqlEscapeVarchar(this.obic7TextStringTorihikisakiCD.Value) + " ");
             sqlSelect.AppendLine("   AND  TorihikisakiKaiteiDate <= " + ComTool.Function.SqlEscapeDatetime(this.obic7TextDatetimeBaseDate.Value) + " ");
+            sqlSelect.AppendLine(" ORDER BY TorihikisakiKaiteiDate DESC ");
             return sqlSelect.ToString();
+        }
+
+        /// 取引先名の表示
+        /// <summary>
+        /// 取引先名の表示(基準日時点)
+        /// </summary>
+        /// <returns>エラー内容(エラーなしの場合はnull)</returns>
+        private string SetTorihikisakiName()
+        {
+            this.obic7LabelStringTorihikisakiName.Value = "";
+
+            if (String.IsNullOrEmpty(this.obic7TextStringTorihikisakiCD.Value))
+            {
+                return null;
+            }
+
+            using (DataTable torihikisakiData = this.businessDB.GetDataTable(MakeSQLSelectTorihikisaki()))
+            {
+                if (!ComTool.Function.IsValidDataTable(torihikisakiData))
+                {
+                    return "取引先マスタに存在しない取引先コードです(基準日時点)。";
+                }
+
+                string torihikisakiName = ComTool.Function.AnyToString(torihikisakiData.Rows[0]["TorihikisakiName"]);
+                if (String.IsNullOrEmpty(torihikisakiName))
+                {
+                    //取引先名がNULL(廃止)
+                    return "基準日時点で廃止されている取引先です。";
+                }
+
+                this.obic7LabelStringTorihikisakiName.Value = torihikisakiName;
+            }
+            return null;
         }
 
         /// 数値をSQLの値に変換（未入力はNULL）
@@ -389,6 +424,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                 this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value = "";
                 this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value = "";
                 this.obic7TextStringTorihikisakiCD.Value = "";
+                this.obic7LabelStringTorihikisakiName.Value = "";
                 this.obic7LabelStringUriageZeiTumiageKBNName.Value = "";
                 this.obic7LabelStringSiireZeiTumiageKBNName.Value = "";
                 this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Value = "";
@@ -977,6 +1013,8 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                     //修正モード
                     SwitchHeader(false, false, MODE_UPDATE);
                     SetDetailData(masterData);
+                    //取引先名(マスタ側で廃止等されていてもエラーにはせず、表示のみ)
+                    SetTorihikisakiName();
                 }
                 else
                 {
@@ -1050,7 +1088,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
 
         /// 取引先コードValidating
         /// <summary>
-        /// 取引先コードValidating(取引先マスタの存在チェック。基準日時点で有効な改定があること)
+        /// 取引先コードValidating(取引先マスタの存在チェックと取引先名の表示。基準日時点の改定で判定)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1058,14 +1096,10 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         {
             WinToolUI.Obic7ErrorProvider.Clear(this.obic7TextStringTorihikisakiCD);
 
-            if (String.IsNullOrEmpty(this.obic7TextStringTorihikisakiCD.Value))
+            string errorMessage = SetTorihikisakiName();
+            if (errorMessage != null)
             {
-                return;
-            }
-
-            if (ComTool.Function.AnyToInt32(this.businessDB.ExecuteScalar(MakeSQLExistsTorihikisaki())) == 0)
-            {
-                WinToolUI.Obic7ErrorProvider.SetError(this.obic7TextStringTorihikisakiCD, "取引先マスタに存在しない取引先コードです(基準日時点)。");
+                WinToolUI.Obic7ErrorProvider.SetError(this.obic7TextStringTorihikisakiCD, errorMessage);
                 e.Cancel = true;
             }
         }

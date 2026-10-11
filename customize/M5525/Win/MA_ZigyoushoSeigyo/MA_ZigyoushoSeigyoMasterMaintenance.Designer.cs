@@ -59,6 +59,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringTorihikisakiCDCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7TextStringTorihikisakiCD = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
             this.obic7ButtonWithLogicTorihikisakiCDSearch = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
+            this.obic7LabelStringTorihikisakiName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7GroupBoxShouhizeiCalc = new Obic7fx.Win.A0000.Tool.UI.Obic7GroupBox();
             this.obic7GroupBoxTorihikisaki = new Obic7fx.Win.A0000.Tool.UI.Obic7GroupBox();
             this.obic7TextSeparatorDetail = new Obic7fx.Win.A0000.Tool.UI.Obic7TextSeparator();
@@ -588,6 +589,23 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7ButtonWithLogicTorihikisakiCDSearch.Click += new System.EventHandler(this.obic7ButtonWithLogicTorihikisakiCDSearch_Click);
             this.obic7ButtonWithLogicTorihikisakiCDSearch.Enter += new System.EventHandler(this.controlDetail_Enter);
             // 
+            // obic7LabelStringTorihikisakiName
+            // 
+            this.obic7LabelStringTorihikisakiName.AutoEllipsis = true;
+            this.obic7LabelStringTorihikisakiName.BackColor = System.Drawing.SystemColors.Control;
+            this.obic7LabelStringTorihikisakiName.ColumnNumber = 0;
+            this.obic7LabelStringTorihikisakiName.EnableFalseLock = false;
+            this.obic7LabelStringTorihikisakiName.ErrorString = null;
+            this.obic7LabelStringTorihikisakiName.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.obic7LabelStringTorihikisakiName.Location = new System.Drawing.Point(330, 24);
+            this.obic7LabelStringTorihikisakiName.Name = "obic7LabelStringTorihikisakiName";
+            this.obic7LabelStringTorihikisakiName.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7LabelStringTorihikisakiName.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
+            this.obic7LabelStringTorihikisakiName.Size = new System.Drawing.Size(300, 19);
+            this.obic7LabelStringTorihikisakiName.TabIndex = 1000000110;
+            this.obic7LabelStringTorihikisakiName.Value = "";
+            this.obic7LabelStringTorihikisakiName.VisibleFalseLock = false;
+            // 
             // obic7GroupBoxShouhizeiCalc
             // 
             this.obic7GroupBoxShouhizeiCalc.ColumnNumber = 0;
@@ -619,6 +637,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7GroupBoxTorihikisaki.Controls.Add(this.obic7LabelStringTorihikisakiCDCaption);
             this.obic7GroupBoxTorihikisaki.Controls.Add(this.obic7TextStringTorihikisakiCD);
             this.obic7GroupBoxTorihikisaki.Controls.Add(this.obic7ButtonWithLogicTorihikisakiCDSearch);
+            this.obic7GroupBoxTorihikisaki.Controls.Add(this.obic7LabelStringTorihikisakiName);
             this.obic7GroupBoxTorihikisaki.EnableFalseLock = false;
             this.obic7GroupBoxTorihikisaki.Location = new System.Drawing.Point(54, 160);
             this.obic7GroupBoxTorihikisaki.Name = "obic7GroupBoxTorihikisaki";
@@ -689,6 +708,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringTorihikisakiCDCaption;
         private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringTorihikisakiCD;
         private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicTorihikisakiCDSearch;
+        private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringTorihikisakiName;
         private Obic7fx.Win.A0000.Tool.UI.Obic7GroupBox obic7GroupBoxShouhizeiCalc;
         private Obic7fx.Win.A0000.Tool.UI.Obic7GroupBox obic7GroupBoxTorihikisaki;
         private Obic7fx.Win.A0000.Tool.UI.Obic7TextSeparator obic7TextSeparatorDetail;

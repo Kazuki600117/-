@@ -1,0 +1,7 @@
+# OBIC7 ソースは Shift_JIS(CP932) / CRLF のまま保持する（改行・文字コード変換をしない）
+*.cs   -text diff working-tree-encoding=CP932
+*.sql  -text diff working-tree-encoding=CP932
+*.resx -text
+*.csproj -text
+*.licx -text
+*.vspscc -text

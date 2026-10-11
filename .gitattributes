@@ -5,3 +5,10 @@
 *.csproj -text
 *.licx -text
 *.vspscc -text
+
+# 資産事業所マスタメンテは .cs の一部が UTF-8(BOM付き) のため、CP932 変換の対象外とする
+**/NA_SisanZigyousho/*.Designer.cs        !working-tree-encoding
+**/NA_SisanZigyousho/Program.cs           !working-tree-encoding
+**/NA_SisanZigyousho/Properties/*.cs      !working-tree-encoding
+**/NA_SisanZigyousho/Properties/*.resx    -text
+**/NA_SisanZigyousho/Properties/*.settings -text

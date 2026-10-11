@@ -4,7 +4,7 @@
 ** 概要：財務会計の各種制御項目を事業所ごとに保持するアドオンテーブル。
 **       ・消費税計算方式(売上・仕入 × R5.9.30以前・R5.10.1以後)
 **           消費税申告管理(M5525)で出力区分＝事業所の場合に使用する。
-**           NULL の区分は財務コントロールマスタ(M0000MS_MA_Control)の値を使用する。
+**           必須項目。事業所のレコードが存在しない場合は財務コントロールマスタ(M0000MS_MA_Control)の値を使用する。
 **       ・取引先コード
 ** 対象：
 **       M5525MS_MA_ZigyoushoSeigyo         事業所別制御マスタ
@@ -24,10 +24,10 @@ if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[M5525M
 BEGIN
 CREATE TABLE [dbo].[M5525MS_MA_ZigyoushoSeigyo] (
       ZigyoushoCD                     varchar(6)          NOT NULL -- 事業所コード
-    , UriageZeiTumiageKBN             tinyint             NULL     -- R5.9.30以前売上消費税計算方式区分(0:割戻方式、1:積上方式、NULL:財務コントロールマスタに従う)
-    , SiireZeiTumiageKBN              tinyint             NULL     -- R5.9.30以前仕入消費税計算方式区分(同上)
-    , R5NenOctIgoUriageZeiTumiageKBN  tinyint             NULL     -- R5.10.1以後売上消費税計算方式区分(同上)
-    , R5NenOctIgoSiireZeiTumiageKBN   tinyint             NULL     -- R5.10.1以後仕入消費税計算方式区分(同上)
+    , UriageZeiTumiageKBN             tinyint             NOT NULL -- R5.9.30以前売上消費税計算方式区分(0:割戻方式、1:積上方式。共通コード種別40840)
+    , SiireZeiTumiageKBN              tinyint             NOT NULL -- R5.9.30以前仕入消費税計算方式区分(同上)
+    , R5NenOctIgoUriageZeiTumiageKBN  tinyint             NOT NULL -- R5.10.1以後売上消費税計算方式区分(同上)
+    , R5NenOctIgoSiireZeiTumiageKBN   tinyint             NOT NULL -- R5.10.1以後仕入消費税計算方式区分(同上)
     , TorihikisakiCD                  varchar(10)         NULL     -- 取引先コード
     , CompanyNO                       int                 NOT NULL -- 会社NO
     , UpdateTimestamp                 timestamp           NOT NULL -- 更新タイムスタンプ
@@ -55,10 +55,10 @@ if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[M5525M
 BEGIN
 CREATE TABLE [dbo].[M5525MS_MA_ZigyoushoSeigyoHistory] (
       ZigyoushoCD                     varchar(6)          NOT NULL -- 事業所コード
-    , UriageZeiTumiageKBN             tinyint             NULL     -- R5.9.30以前売上消費税計算方式区分(0:割戻方式、1:積上方式、NULL:財務コントロールマスタに従う)
-    , SiireZeiTumiageKBN              tinyint             NULL     -- R5.9.30以前仕入消費税計算方式区分(同上)
-    , R5NenOctIgoUriageZeiTumiageKBN  tinyint             NULL     -- R5.10.1以後売上消費税計算方式区分(同上)
-    , R5NenOctIgoSiireZeiTumiageKBN   tinyint             NULL     -- R5.10.1以後仕入消費税計算方式区分(同上)
+    , UriageZeiTumiageKBN             tinyint             NOT NULL -- R5.9.30以前売上消費税計算方式区分(0:割戻方式、1:積上方式。共通コード種別40840)
+    , SiireZeiTumiageKBN              tinyint             NOT NULL -- R5.9.30以前仕入消費税計算方式区分(同上)
+    , R5NenOctIgoUriageZeiTumiageKBN  tinyint             NOT NULL -- R5.10.1以後売上消費税計算方式区分(同上)
+    , R5NenOctIgoSiireZeiTumiageKBN   tinyint             NOT NULL -- R5.10.1以後仕入消費税計算方式区分(同上)
     , TorihikisakiCD                  varchar(10)         NULL     -- 取引先コード
     , CompanyNO                       int                 NOT NULL -- 会社NO
     , UpdateTimestamp                 binary(8)           NOT NULL -- 更新タイムスタンプ

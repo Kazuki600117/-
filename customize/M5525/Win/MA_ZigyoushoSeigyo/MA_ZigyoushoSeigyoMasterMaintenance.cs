@@ -3,7 +3,7 @@
 //                        ・事業所別制御マスタメンテ
 //                          事業所ごとに消費税計算方式(売上・仕入 × R5.9.30以前・R5.10.1以後)と取引先コードを
 //                          事業所別制御マスタ(M5525MS_MA_ZigyoushoSeigyo)に登録する
-//                        ・消費税計算方式が未入力の区分は、財務コントロールマスタの値に従う
+//                        ・消費税計算方式は必須。コード・名称・検索は財務コントロールマスタメンテと同じ共通コード(種別40840)を使用する
 //                        ・画面構成・操作は資産事業所マスタメンテ(N0000)に合わせる
 //                        ・取引先コードは取引先マスタ(P0000MS_Torihikisaki)の存在チェック・取引先名表示(基準日時点の改定)と検索(F4)を行う
 //
@@ -45,11 +45,14 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         //カスタマイズSEQ(DBアクセス・メッセージは標準と同じ 0000 を使用する)
         private const string CUSTOM_SEQ = "0000";
 
-        //消費税計算方式区分
-        //割戻方式
-        private const int CALC_KBN_WARIMODOSI = 0;
-        //積上方式
-        private const int CALC_KBN_TUMIAGE = 1;
+        //共通コード種別(消費税計算方式)
+        private const int SHUBETU_SHOUHIZEI_CALC = 40840;
+        //メッセージCD2(未入力)
+        private const string MESSAGE_EMPTY = "00104";
+        //メッセージCD2(売上消費税計算方式が存在しない)
+        private const string MESSAGE_URIAGE_CALC_NOTFOUND = "30423";
+        //メッセージCD2(仕入消費税計算方式が存在しない)
+        private const string MESSAGE_SIIRE_CALC_NOTFOUND = "30424";
 
         #endregion
 
@@ -62,15 +65,6 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         //F5が押下されたかどうかの判定用
         private bool isF5Check = false;
 
-        //財務コントロールマスタの消費税計算方式区分(未入力時の表示用)
-        //R5.9.30以前売上消費税計算方式区分
-        private int controlUriageZeiTumiageKBN;
-        //R5.9.30以前仕入消費税計算方式区分
-        private int controlSiireZeiTumiageKBN;
-        //R5.10.1以後売上消費税計算方式区分
-        private int controlR5NenOctIgoUriageZeiTumiageKBN;
-        //R5.10.1以後仕入消費税計算方式区分
-        private int controlR5NenOctIgoSiireZeiTumiageKBN;
 
         #endregion
 
@@ -109,14 +103,22 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         {
             StringBuilder sqlSelect = new StringBuilder();
             sqlSelect.AppendLine(" SELECT ");
-            sqlSelect.AppendLine("        UriageZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,SiireZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,R5NenOctIgoUriageZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,R5NenOctIgoSiireZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,TorihikisakiCD ");
-            sqlSelect.AppendLine("       ,UpdateTimestamp ");
-            sqlSelect.AppendLine(" FROM   M5525MS_MA_ZigyoushoSeigyo ");
-            sqlSelect.AppendLine(" WHERE  ZigyoushoCD = " + ComTool.Function.SqlEscapeVarchar(this.obic7TextStringZigyoushoCD.Value) + " ");
+            sqlSelect.AppendLine("        ZSG.UriageZeiTumiageKBN ");
+            sqlSelect.AppendLine("       ,Code1.CodeName AS UriageZeiTumiageKBNName ");
+            sqlSelect.AppendLine("       ,ZSG.SiireZeiTumiageKBN ");
+            sqlSelect.AppendLine("       ,Code2.CodeName AS SiireZeiTumiageKBNName ");
+            sqlSelect.AppendLine("       ,ZSG.R5NenOctIgoUriageZeiTumiageKBN ");
+            sqlSelect.AppendLine("       ,Code3.CodeName AS R5NenOctIgoUriageZeiTumiageKBNName ");
+            sqlSelect.AppendLine("       ,ZSG.R5NenOctIgoSiireZeiTumiageKBN ");
+            sqlSelect.AppendLine("       ,Code4.CodeName AS R5NenOctIgoSiireZeiTumiageKBNName ");
+            sqlSelect.AppendLine("       ,ZSG.TorihikisakiCD ");
+            sqlSelect.AppendLine("       ,ZSG.UpdateTimestamp ");
+            sqlSelect.AppendLine(" FROM   M5525MS_MA_ZigyoushoSeigyo ZSG ");
+            sqlSelect.AppendLine(" LEFT JOIN M0000MS_CommonCode Code1 ON ZSG.UriageZeiTumiageKBN = Code1.CodeValue AND Code1.Shubetu = " + SHUBETU_SHOUHIZEI_CALC.ToString() + " ");
+            sqlSelect.AppendLine(" LEFT JOIN M0000MS_CommonCode Code2 ON ZSG.SiireZeiTumiageKBN = Code2.CodeValue AND Code2.Shubetu = " + SHUBETU_SHOUHIZEI_CALC.ToString() + " ");
+            sqlSelect.AppendLine(" LEFT JOIN M0000MS_CommonCode Code3 ON ZSG.R5NenOctIgoUriageZeiTumiageKBN = Code3.CodeValue AND Code3.Shubetu = " + SHUBETU_SHOUHIZEI_CALC.ToString() + " ");
+            sqlSelect.AppendLine(" LEFT JOIN M0000MS_CommonCode Code4 ON ZSG.R5NenOctIgoSiireZeiTumiageKBN = Code4.CodeValue AND Code4.Shubetu = " + SHUBETU_SHOUHIZEI_CALC.ToString() + " ");
+            sqlSelect.AppendLine(" WHERE  ZSG.ZigyoushoCD = " + ComTool.Function.SqlEscapeVarchar(this.obic7TextStringZigyoushoCD.Value) + " ");
             return sqlSelect.ToString();
         }
 
@@ -161,13 +163,13 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             sqlInsert.AppendLine("        SELECT ");
             sqlInsert.AppendLine(ComTool.Function.SqlEscapeVarchar(this.obic7TextStringZigyoushoCD.Value));
             //R5.9.30以前売上消費税計算方式区分
-            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextStringUriageZeiTumiageKBN.Value));
+            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextNumberUriageZeiTumiageKBN.Value));
             //R5.9.30以前仕入消費税計算方式区分
-            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextStringSiireZeiTumiageKBN.Value));
+            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextNumberSiireZeiTumiageKBN.Value));
             //R5.10.1以後売上消費税計算方式区分
-            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value));
+            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Value));
             //R5.10.1以後仕入消費税計算方式区分
-            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value));
+            sqlInsert.AppendLine(" , " + ToSqlNumberOrNull(this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Value));
             //取引先コード
             sqlInsert.AppendLine(" , " + ToSqlVarcharOrNull(this.obic7TextStringTorihikisakiCD.Value));
             //会社No
@@ -203,10 +205,10 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         {
             StringBuilder sqlUpdate = new StringBuilder();
             sqlUpdate.AppendLine(" UPDATE M5525MS_MA_ZigyoushoSeigyo ");
-            sqlUpdate.AppendLine(" SET    UriageZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextStringUriageZeiTumiageKBN.Value));
-            sqlUpdate.AppendLine("       ,SiireZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextStringSiireZeiTumiageKBN.Value));
-            sqlUpdate.AppendLine("       ,R5NenOctIgoUriageZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value));
-            sqlUpdate.AppendLine("       ,R5NenOctIgoSiireZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value));
+            sqlUpdate.AppendLine(" SET    UriageZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextNumberUriageZeiTumiageKBN.Value));
+            sqlUpdate.AppendLine("       ,SiireZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextNumberSiireZeiTumiageKBN.Value));
+            sqlUpdate.AppendLine("       ,R5NenOctIgoUriageZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Value));
+            sqlUpdate.AppendLine("       ,R5NenOctIgoSiireZeiTumiageKBN = " + ToSqlNumberOrNull(this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Value));
             sqlUpdate.AppendLine("       ,TorihikisakiCD = " + ToSqlVarcharOrNull(this.obic7TextStringTorihikisakiCD.Value));
             sqlUpdate.AppendLine("       ,CompanyNO = " + ComTool.Function.SqlEscapeNumber(ComToolLogic.CurrentUser.CompanyNO));
             sqlUpdate.AppendLine("       ,UpdateDatetime = GETDATE() ");
@@ -231,10 +233,6 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             StringBuilder sqlSelect = new StringBuilder();
             sqlSelect.AppendLine(" SELECT ");
             sqlSelect.AppendLine("        KijunDate ");
-            sqlSelect.AppendLine("       ,UriageZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,SiireZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,R5NenOctIgoUriageZeiTumiageKBN ");
-            sqlSelect.AppendLine("       ,R5NenOctIgoSiireZeiTumiageKBN ");
             sqlSelect.AppendLine(" FROM   M0000MS_MA_Control ");
             sqlSelect.AppendLine(" WHERE  ControlKey = 1 ");
             return sqlSelect.ToString();
@@ -297,14 +295,9 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         /// </summary>
         /// <param name="value">入力値</param>
         /// <returns>SQLの値</returns>
-        private string ToSqlNumberOrNull(string value)
+        private string ToSqlNumberOrNull(decimal? value)
         {
-            int number;
-            if (String.IsNullOrEmpty(value) || !int.TryParse(value, out number))
-            {
-                return "NULL";
-            }
-            return ComTool.Function.SqlEscapeNumber(number);
+            return (value == null) ? "NULL" : ComTool.Function.SqlEscapeNumber(value);
         }
 
         /// 文字列をSQLの値に変換（未入力はNULL）
@@ -409,20 +402,24 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private void SwitchDetail(bool isEnabled, bool isNeedClear)
         {
             //消費税計算方式
-            this.obic7TextStringUriageZeiTumiageKBN.Enabled = isEnabled;
-            this.obic7TextStringSiireZeiTumiageKBN.Enabled = isEnabled;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Enabled = isEnabled;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Enabled = isEnabled;
+            this.obic7TextNumberUriageZeiTumiageKBN.Enabled = isEnabled;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Enabled = isEnabled;
+            this.obic7TextNumberSiireZeiTumiageKBN.Enabled = isEnabled;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Enabled = isEnabled;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Enabled = isEnabled;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Enabled = isEnabled;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Enabled = isEnabled;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Enabled = isEnabled;
             //取引先
             this.obic7TextStringTorihikisakiCD.Enabled = isEnabled;
             this.obic7ButtonWithLogicTorihikisakiCDSearch.Enabled = isEnabled;
 
             if (isNeedClear)
             {
-                this.obic7TextStringUriageZeiTumiageKBN.Value = "";
-                this.obic7TextStringSiireZeiTumiageKBN.Value = "";
-                this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value = "";
-                this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value = "";
+                this.obic7TextNumberUriageZeiTumiageKBN.Value = null;
+                this.obic7TextNumberSiireZeiTumiageKBN.Value = null;
+                this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Value = null;
+                this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Value = null;
                 this.obic7TextStringTorihikisakiCD.Value = "";
                 this.obic7LabelStringTorihikisakiName.Value = "";
                 this.obic7LabelStringUriageZeiTumiageKBNName.Value = "";
@@ -442,73 +439,89 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private void SetDetailData(DataTable masterData)
         {
             DataRow row = masterData.Rows[0];
-            this.obic7TextStringUriageZeiTumiageKBN.Value = ComTool.Function.AnyToString(row["UriageZeiTumiageKBN"]);
-            this.obic7TextStringSiireZeiTumiageKBN.Value = ComTool.Function.AnyToString(row["SiireZeiTumiageKBN"]);
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value = ComTool.Function.AnyToString(row["R5NenOctIgoUriageZeiTumiageKBN"]);
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value = ComTool.Function.AnyToString(row["R5NenOctIgoSiireZeiTumiageKBN"]);
+            this.obic7TextNumberUriageZeiTumiageKBN.Value = ComTool.Function.AnyToDecimal(row["UriageZeiTumiageKBN"]);
+            this.obic7LabelStringUriageZeiTumiageKBNName.Value = ComTool.Function.AnyToString(row["UriageZeiTumiageKBNName"]);
+            this.obic7TextNumberSiireZeiTumiageKBN.Value = ComTool.Function.AnyToDecimal(row["SiireZeiTumiageKBN"]);
+            this.obic7LabelStringSiireZeiTumiageKBNName.Value = ComTool.Function.AnyToString(row["SiireZeiTumiageKBNName"]);
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Value = ComTool.Function.AnyToDecimal(row["R5NenOctIgoUriageZeiTumiageKBN"]);
+            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Value = ComTool.Function.AnyToString(row["R5NenOctIgoUriageZeiTumiageKBNName"]);
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Value = ComTool.Function.AnyToDecimal(row["R5NenOctIgoSiireZeiTumiageKBN"]);
+            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Value = ComTool.Function.AnyToString(row["R5NenOctIgoSiireZeiTumiageKBNName"]);
             this.obic7TextStringTorihikisakiCD.Value = ComTool.Function.AnyToString(row["TorihikisakiCD"]);
             this.timestamp = (byte[])row["UpdateTimestamp"];
         }
 
-        /// 消費税計算方式名称の表示
+        /// 共通コードのチェック
         /// <summary>
-        /// 消費税計算方式名称の表示(未入力の場合は財務コントロールマスタの値を表示)
+        /// 共通コードのチェック(財務コントロールマスタメンテと同じ)
         /// </summary>
-        private void SetCalcKBNNames()
+        /// <param name="textCD">コード入力項目</param>
+        /// <param name="labelName">名称表示項目</param>
+        /// <param name="shubetu">共通コード種別</param>
+        /// <param name="messageCD">存在しない場合のメッセージCD2</param>
+        /// <returns>true:エラーなし　false:エラーあり</returns>
+        private bool CheckCommonCode(WinToolUI.Obic7TextNumber textCD, WinToolUI.Obic7LabelString labelName, int shubetu, string messageCD)
         {
-            this.obic7LabelStringUriageZeiTumiageKBNName.Value = GetCalcKBNDispName(this.obic7TextStringUriageZeiTumiageKBN.Value, this.controlUriageZeiTumiageKBN);
-            this.obic7LabelStringSiireZeiTumiageKBNName.Value = GetCalcKBNDispName(this.obic7TextStringSiireZeiTumiageKBN.Value, this.controlSiireZeiTumiageKBN);
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Value = GetCalcKBNDispName(this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value, this.controlR5NenOctIgoUriageZeiTumiageKBN);
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Value = GetCalcKBNDispName(this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value, this.controlR5NenOctIgoSiireZeiTumiageKBN);
-        }
-
-        /// 消費税計算方式の名称を取得
-        /// <summary>
-        /// 消費税計算方式の名称を取得
-        /// </summary>
-        /// <param name="calcKBN">消費税計算方式区分</param>
-        /// <returns>名称(区分外の場合はnull)</returns>
-        private string GetCalcKBNName(int calcKBN)
-        {
-            switch (calcKBN)
+            bool result = true;
+            if (textCD.Value == null)
             {
-                case CALC_KBN_WARIMODOSI:
-                    return "割戻方式";
-                case CALC_KBN_TUMIAGE:
-                    return "積上方式";
-                default:
-                    return null;
+                //未入力時はラベルをクリア
+                labelName.Value = "";
             }
-        }
-
-        /// 消費税計算方式の表示名称を取得
-        /// <summary>
-        /// 消費税計算方式の表示名称を取得
-        /// </summary>
-        /// <param name="inputValue">入力値</param>
-        /// <param name="controlCalcKBN">財務コントロールマスタの区分</param>
-        /// <returns>表示名称</returns>
-        private string GetCalcKBNDispName(string inputValue, int controlCalcKBN)
-        {
-            int calcKBN;
-            if (String.IsNullOrEmpty(inputValue))
+            else if (textCD.IsChangedText)
             {
-                return "未設定（財務コントロール：" + GetCalcKBNName(controlCalcKBN) + "）";
-            }
-            if (int.TryParse(inputValue, out calcKBN))
-            {
-                string name = GetCalcKBNName(calcKBN);
-                if (name != null)
+                using (DataTable ret = M0000SearchCom.M0000MS_CommonCode.SelectByKey(shubetu, textCD.Value.ToString(), ""))
                 {
-                    return name;
+                    if (!ComTool.Function.IsValidDataTable(ret))
+                    {
+                        WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, CUSTOM_SEQ, MESSAGECD1, messageCD, null, null, this.GetType(),
+                                                            WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
+                                                            WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
+                        labelName.Value = "";
+                        result = false;
+                    }
+                    else
+                    {
+                        labelName.Value = ComTool.Function.AnyToString(ret.Rows[0]["CodeName"]);
+                    }
                 }
             }
-            return "";
+            return result;
+        }
+
+        /// 消費税計算方式の必須チェック
+        /// <summary>
+        /// 消費税計算方式の必須チェック
+        /// </summary>
+        /// <returns>true:エラーなし　false:エラーあり</returns>
+        private bool CheckCalcKBNRequired()
+        {
+            bool result = true;
+            WinToolUI.Obic7TextNumber[] calcKBNTexts = new WinToolUI.Obic7TextNumber[] {
+                  this.obic7TextNumberUriageZeiTumiageKBN
+                , this.obic7TextNumberSiireZeiTumiageKBN
+                , this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN
+                , this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN };
+
+            foreach (WinToolUI.Obic7TextNumber calcKBNText in calcKBNTexts)
+            {
+                if (calcKBNText.Value == null)
+                {
+                    DispErrorProvider(calcKBNText, MESSAGE_EMPTY, null);
+                    if (result == true)
+                    {
+                        //エラーの先頭項目であればフォーカスを移動
+                        calcKBNText.Focus();
+                        result = false;
+                    }
+                }
+            }
+            return result;
         }
 
         /// 財務コントロールマスタの読込
         /// <summary>
-        /// 財務コントロールマスタの読込(基準日・消費税計算方式区分)
+        /// 財務コントロールマスタの読込(基準日)
         /// </summary>
         /// <returns>基準日にセットする日付</returns>
         private string LoadControl()
@@ -517,10 +530,6 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             {
                 if (ComTool.Function.IsValidDataTable(controlData))
                 {
-                    this.controlUriageZeiTumiageKBN = ComTool.Function.AnyToInt32(controlData.Rows[0]["UriageZeiTumiageKBN"]);
-                    this.controlSiireZeiTumiageKBN = ComTool.Function.AnyToInt32(controlData.Rows[0]["SiireZeiTumiageKBN"]);
-                    this.controlR5NenOctIgoUriageZeiTumiageKBN = ComTool.Function.AnyToInt32(controlData.Rows[0]["R5NenOctIgoUriageZeiTumiageKBN"]);
-                    this.controlR5NenOctIgoSiireZeiTumiageKBN = ComTool.Function.AnyToInt32(controlData.Rows[0]["R5NenOctIgoSiireZeiTumiageKBN"]);
 
                     if (!String.IsNullOrEmpty(controlData.Rows[0]["KijunDate"].ToString()))
                     {
@@ -614,6 +623,24 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                     {
                         //OK押下時、表示ボタン押下時の処理を行う
                         this.obic7ButtonWithLogicDisp.PerformClick();
+                        return;
+                    }
+                }
+            }
+            else if (textAbstract == this.obic7TextNumberUriageZeiTumiageKBN
+                  || textAbstract == this.obic7TextNumberSiireZeiTumiageKBN
+                  || textAbstract == this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN
+                  || textAbstract == this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN)
+            {
+                //消費税計算方式(財務コントロールマスタメンテと同じ共通コード検索)
+                using (M0000Search.MA_CodeDialog codeDialog = new M0000Search.MA_CodeDialog())
+                {
+                    codeDialog.Shubetu = SHUBETU_SHOUHIZEI_CALC;
+                    textAbstract.AttachedSearchDialog = codeDialog;
+                    if (textAbstract.ShowDialog() == DialogResult.OK)
+                    {
+                        //OK押下時、次の項目へフォーカスを移動
+                        base.SelectNextInputControl(true);
                         return;
                     }
                 }
@@ -758,6 +785,12 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
 
             //入力項目のValidating
             if (this.Validate() == false)
+            {
+                return;
+            }
+
+            //必須チェック(消費税計算方式)
+            if (!CheckCalcKBNRequired())
             {
                 return;
             }
@@ -920,7 +953,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private void MA_ZigyoushoSeigyoMasterMaintenance_FormClosing(object sender, FormClosingEventArgs e)
         {
             //編集中であれば確認メッセージを表示する
-            if ((this.obic7TextStringUriageZeiTumiageKBN.Enabled == true) && (this.obic7TextStringUriageZeiTumiageKBN.ReadOnly == false))
+            if ((this.obic7TextNumberUriageZeiTumiageKBN.Enabled == true) && (this.obic7TextNumberUriageZeiTumiageKBN.ReadOnly == false))
             {
                 if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, CUSTOM_SEQ, MESSAGECD1, "00110", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) != DialogResult.Yes)
                 {
@@ -1024,35 +1057,79 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                     SwitchHeader(false, false, MODE_INSERT);
                 }
             }
-            SetCalcKBNNames();
-
             //明細部の先頭項目へフォーカスを移動
             this.obic7TextSeparatorDetail.Focus();
         }
 
         /// 消費税計算方式区分Validating
         /// <summary>
-        /// 消費税計算方式区分Validating(未入力、0:割戻方式、1:積上方式のみ可)
+        /// 消費税計算方式区分Validating(共通コードの存在チェックと名称表示)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void obic7TextStringCalcKBN_Validating(object sender, CancelEventArgs e)
+        private void obic7TextNumberCalcKBN_Validating(object sender, CancelEventArgs e)
         {
-            WinToolUI.Obic7TextString textCalcKBN = sender as WinToolUI.Obic7TextString;
-            if (textCalcKBN == null)
+            WinToolUI.Obic7TextNumber textCalcKBN = sender as WinToolUI.Obic7TextNumber;
+            WinToolUI.Obic7LabelString labelName;
+            string messageCD;
+
+            if (textCalcKBN == this.obic7TextNumberUriageZeiTumiageKBN)
+            {
+                labelName = this.obic7LabelStringUriageZeiTumiageKBNName;
+                messageCD = MESSAGE_URIAGE_CALC_NOTFOUND;
+            }
+            else if (textCalcKBN == this.obic7TextNumberSiireZeiTumiageKBN)
+            {
+                labelName = this.obic7LabelStringSiireZeiTumiageKBNName;
+                messageCD = MESSAGE_SIIRE_CALC_NOTFOUND;
+            }
+            else if (textCalcKBN == this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN)
+            {
+                labelName = this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName;
+                messageCD = MESSAGE_URIAGE_CALC_NOTFOUND;
+            }
+            else if (textCalcKBN == this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN)
+            {
+                labelName = this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName;
+                messageCD = MESSAGE_SIIRE_CALC_NOTFOUND;
+            }
+            else
             {
                 return;
             }
-            WinToolUI.Obic7ErrorProvider.Clear(textCalcKBN);
 
-            int calcKBN;
-            if (!String.IsNullOrEmpty(textCalcKBN.Value)
-                && (!int.TryParse(textCalcKBN.Value, out calcKBN) || GetCalcKBNName(calcKBN) == null))
+            WinToolUI.Obic7ErrorProvider.Clear(textCalcKBN);
+            if (!CheckCommonCode(textCalcKBN, labelName, SHUBETU_SHOUHIZEI_CALC, messageCD))
             {
-                WinToolUI.Obic7ErrorProvider.SetError(textCalcKBN, "0:割戻方式、1:積上方式 のいずれかを入力してください。未入力の場合は財務コントロールマスタの設定に従います。");
                 e.Cancel = true;
             }
-            SetCalcKBNNames();
+        }
+
+        /// 消費税計算方式_検索ボタン押下時の処理
+        /// <summary>
+        /// 消費税計算方式_検索ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void obic7ButtonWithLogicCalcKBNSearch_Click(object sender, EventArgs e)
+        {
+            if (sender == this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch)
+            {
+                this.obic7TextNumberUriageZeiTumiageKBN.Focus();
+            }
+            else if (sender == this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch)
+            {
+                this.obic7TextNumberSiireZeiTumiageKBN.Focus();
+            }
+            else if (sender == this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch)
+            {
+                this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Focus();
+            }
+            else if (sender == this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch)
+            {
+                this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Focus();
+            }
+            this.obic7ToolStripButtonWithLogicF4.PerformClick();
         }
 
         /// 事業所コードフォーカス取得時の処理

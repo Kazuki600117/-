@@ -45,16 +45,20 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringZigyoushoName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7ButtonWithLogicDisp = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
             this.obic7LabelStringUriageZeiTumiageKBNCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
-            this.obic7TextStringUriageZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
+            this.obic7TextNumberUriageZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber();
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
             this.obic7LabelStringUriageZeiTumiageKBNName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7LabelStringSiireZeiTumiageKBNCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
-            this.obic7TextStringSiireZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
+            this.obic7TextNumberSiireZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber();
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
             this.obic7LabelStringSiireZeiTumiageKBNName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber();
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN = new Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber();
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch = new Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic();
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7LabelStringTorihikisakiCDCaption = new Obic7fx.Win.A0000.Tool.UI.Obic7LabelString();
             this.obic7TextStringTorihikisakiCD = new Obic7fx.Win.A0000.Tool.UI.Obic7TextString();
@@ -277,36 +281,61 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringUriageZeiTumiageKBNCaption.Value = "R5.9.30以前売上消費税計算方式";
             this.obic7LabelStringUriageZeiTumiageKBNCaption.VisibleFalseLock = false;
             // 
-            // obic7TextStringUriageZeiTumiageKBN
+            // obic7TextNumberUriageZeiTumiageKBN
             // 
-            this.obic7TextStringUriageZeiTumiageKBN.AllowAlphabet = false;
-            this.obic7TextStringUriageZeiTumiageKBN.AllowKana = false;
-            this.obic7TextStringUriageZeiTumiageKBN.AllowNumber = true;
-            this.obic7TextStringUriageZeiTumiageKBN.AllowSymbol = false;
-            this.obic7TextStringUriageZeiTumiageKBN.AllowUnicode = false;
-            this.obic7TextStringUriageZeiTumiageKBN.AllowZenkaku = false;
-            this.obic7TextStringUriageZeiTumiageKBN.AttachedButton = null;
-            this.obic7TextStringUriageZeiTumiageKBN.AttachedLabel = this.obic7LabelStringUriageZeiTumiageKBNCaption;
-            this.obic7TextStringUriageZeiTumiageKBN.AttachedSearchDialog = null;
-            this.obic7TextStringUriageZeiTumiageKBN.CheckOnClose = false;
-            this.obic7TextStringUriageZeiTumiageKBN.ColumnNumber = 0;
-            this.obic7TextStringUriageZeiTumiageKBN.DispFuriganaText = null;
-            this.obic7TextStringUriageZeiTumiageKBN.EnableFalseLock = false;
-            this.obic7TextStringUriageZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringUriageZeiTumiageKBN.ErrorString = null;
-            this.obic7TextStringUriageZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.obic7TextStringUriageZeiTumiageKBN.IsKeyColumn = false;
-            this.obic7TextStringUriageZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringUriageZeiTumiageKBN.Location = new System.Drawing.Point(222, 24);
-            this.obic7TextStringUriageZeiTumiageKBN.MaxLengthByte = 1;
-            this.obic7TextStringUriageZeiTumiageKBN.Name = "obic7TextStringUriageZeiTumiageKBN";
-            this.obic7TextStringUriageZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
-            this.obic7TextStringUriageZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
-            this.obic7TextStringUriageZeiTumiageKBN.TabIndex = 2010;
-            this.obic7TextStringUriageZeiTumiageKBN.Value = "";
-            this.obic7TextStringUriageZeiTumiageKBN.VisibleFalseLock = false;
-            this.obic7TextStringUriageZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetail_Enter);
-            this.obic7TextStringUriageZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextStringCalcKBN_Validating);
+            this.obic7TextNumberUriageZeiTumiageKBN.AttachedButton = this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch;
+            this.obic7TextNumberUriageZeiTumiageKBN.AttachedCopyText = null;
+            this.obic7TextNumberUriageZeiTumiageKBN.AttachedLabel = null;
+            this.obic7TextNumberUriageZeiTumiageKBN.AttachedSearchDialog = null;
+            this.obic7TextNumberUriageZeiTumiageKBN.CheckOnClose = false;
+            this.obic7TextNumberUriageZeiTumiageKBN.ColumnNumber = 0;
+            this.obic7TextNumberUriageZeiTumiageKBN.EnableFalseLock = false;
+            this.obic7TextNumberUriageZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberUriageZeiTumiageKBN.ErrorString = null;
+            this.obic7TextNumberUriageZeiTumiageKBN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.obic7TextNumberUriageZeiTumiageKBN.Format = "0";
+            this.obic7TextNumberUriageZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.obic7TextNumberUriageZeiTumiageKBN.IsKeyColumn = false;
+            this.obic7TextNumberUriageZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberUriageZeiTumiageKBN.Location = new System.Drawing.Point(222, 24);
+            this.obic7TextNumberUriageZeiTumiageKBN.MaxLengthByte = 1;
+            this.obic7TextNumberUriageZeiTumiageKBN.MaxValue = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.obic7TextNumberUriageZeiTumiageKBN.MinusColor = System.Drawing.Color.Red;
+            this.obic7TextNumberUriageZeiTumiageKBN.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.obic7TextNumberUriageZeiTumiageKBN.Name = "obic7TextNumberUriageZeiTumiageKBN";
+            this.obic7TextNumberUriageZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7TextNumberUriageZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
+            this.obic7TextNumberUriageZeiTumiageKBN.TabIndex = 2010;
+            this.obic7TextNumberUriageZeiTumiageKBN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.obic7TextNumberUriageZeiTumiageKBN.Value = null;
+            this.obic7TextNumberUriageZeiTumiageKBN.VisibleFalseLock = false;
+            this.obic7TextNumberUriageZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetailSearch_Enter);
+            this.obic7TextNumberUriageZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextNumberCalcKBN_Validating);
+            // 
+            // obic7ButtonWithLogicUriageZeiTumiageKBNSearch
+            // 
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.ColumnNumber = 0;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.EnableFalseLock = false;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Location = new System.Drawing.Point(240, 22);
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Name = "obic7ButtonWithLogicUriageZeiTumiageKBNSearch";
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Obic7JobSecurity = Obic7fx.Com.A0000.Tool.Obic7JobSecurities.NoSecurity;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Size = new System.Drawing.Size(24, 23);
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.TabIndex = 2015;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Text = "...";
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.UseVisualStyleBackColor = true;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.VisibleFalseLock = false;
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Click += new System.EventHandler(this.obic7ButtonWithLogicCalcKBNSearch_Click);
+            this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch.Enter += new System.EventHandler(this.controlDetail_Enter);
             // 
             // obic7LabelStringUriageZeiTumiageKBNName
             // 
@@ -316,11 +345,11 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringUriageZeiTumiageKBNName.EnableFalseLock = false;
             this.obic7LabelStringUriageZeiTumiageKBNName.ErrorString = null;
             this.obic7LabelStringUriageZeiTumiageKBNName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.obic7LabelStringUriageZeiTumiageKBNName.Location = new System.Drawing.Point(246, 24);
+            this.obic7LabelStringUriageZeiTumiageKBNName.Location = new System.Drawing.Point(264, 24);
             this.obic7LabelStringUriageZeiTumiageKBNName.Name = "obic7LabelStringUriageZeiTumiageKBNName";
             this.obic7LabelStringUriageZeiTumiageKBNName.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
             this.obic7LabelStringUriageZeiTumiageKBNName.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
-            this.obic7LabelStringUriageZeiTumiageKBNName.Size = new System.Drawing.Size(300, 19);
+            this.obic7LabelStringUriageZeiTumiageKBNName.Size = new System.Drawing.Size(282, 19);
             this.obic7LabelStringUriageZeiTumiageKBNName.TabIndex = 1000000102;
             this.obic7LabelStringUriageZeiTumiageKBNName.Value = "";
             this.obic7LabelStringUriageZeiTumiageKBNName.VisibleFalseLock = false;
@@ -343,36 +372,61 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringSiireZeiTumiageKBNCaption.Value = "R5.9.30以前仕入消費税計算方式";
             this.obic7LabelStringSiireZeiTumiageKBNCaption.VisibleFalseLock = false;
             // 
-            // obic7TextStringSiireZeiTumiageKBN
+            // obic7TextNumberSiireZeiTumiageKBN
             // 
-            this.obic7TextStringSiireZeiTumiageKBN.AllowAlphabet = false;
-            this.obic7TextStringSiireZeiTumiageKBN.AllowKana = false;
-            this.obic7TextStringSiireZeiTumiageKBN.AllowNumber = true;
-            this.obic7TextStringSiireZeiTumiageKBN.AllowSymbol = false;
-            this.obic7TextStringSiireZeiTumiageKBN.AllowUnicode = false;
-            this.obic7TextStringSiireZeiTumiageKBN.AllowZenkaku = false;
-            this.obic7TextStringSiireZeiTumiageKBN.AttachedButton = null;
-            this.obic7TextStringSiireZeiTumiageKBN.AttachedLabel = this.obic7LabelStringSiireZeiTumiageKBNCaption;
-            this.obic7TextStringSiireZeiTumiageKBN.AttachedSearchDialog = null;
-            this.obic7TextStringSiireZeiTumiageKBN.CheckOnClose = false;
-            this.obic7TextStringSiireZeiTumiageKBN.ColumnNumber = 0;
-            this.obic7TextStringSiireZeiTumiageKBN.DispFuriganaText = null;
-            this.obic7TextStringSiireZeiTumiageKBN.EnableFalseLock = false;
-            this.obic7TextStringSiireZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringSiireZeiTumiageKBN.ErrorString = null;
-            this.obic7TextStringSiireZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.obic7TextStringSiireZeiTumiageKBN.IsKeyColumn = false;
-            this.obic7TextStringSiireZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringSiireZeiTumiageKBN.Location = new System.Drawing.Point(222, 48);
-            this.obic7TextStringSiireZeiTumiageKBN.MaxLengthByte = 1;
-            this.obic7TextStringSiireZeiTumiageKBN.Name = "obic7TextStringSiireZeiTumiageKBN";
-            this.obic7TextStringSiireZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
-            this.obic7TextStringSiireZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
-            this.obic7TextStringSiireZeiTumiageKBN.TabIndex = 2020;
-            this.obic7TextStringSiireZeiTumiageKBN.Value = "";
-            this.obic7TextStringSiireZeiTumiageKBN.VisibleFalseLock = false;
-            this.obic7TextStringSiireZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetail_Enter);
-            this.obic7TextStringSiireZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextStringCalcKBN_Validating);
+            this.obic7TextNumberSiireZeiTumiageKBN.AttachedButton = this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch;
+            this.obic7TextNumberSiireZeiTumiageKBN.AttachedCopyText = null;
+            this.obic7TextNumberSiireZeiTumiageKBN.AttachedLabel = null;
+            this.obic7TextNumberSiireZeiTumiageKBN.AttachedSearchDialog = null;
+            this.obic7TextNumberSiireZeiTumiageKBN.CheckOnClose = false;
+            this.obic7TextNumberSiireZeiTumiageKBN.ColumnNumber = 0;
+            this.obic7TextNumberSiireZeiTumiageKBN.EnableFalseLock = false;
+            this.obic7TextNumberSiireZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberSiireZeiTumiageKBN.ErrorString = null;
+            this.obic7TextNumberSiireZeiTumiageKBN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.obic7TextNumberSiireZeiTumiageKBN.Format = "0";
+            this.obic7TextNumberSiireZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.obic7TextNumberSiireZeiTumiageKBN.IsKeyColumn = false;
+            this.obic7TextNumberSiireZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberSiireZeiTumiageKBN.Location = new System.Drawing.Point(222, 48);
+            this.obic7TextNumberSiireZeiTumiageKBN.MaxLengthByte = 1;
+            this.obic7TextNumberSiireZeiTumiageKBN.MaxValue = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.obic7TextNumberSiireZeiTumiageKBN.MinusColor = System.Drawing.Color.Red;
+            this.obic7TextNumberSiireZeiTumiageKBN.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.obic7TextNumberSiireZeiTumiageKBN.Name = "obic7TextNumberSiireZeiTumiageKBN";
+            this.obic7TextNumberSiireZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7TextNumberSiireZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
+            this.obic7TextNumberSiireZeiTumiageKBN.TabIndex = 2020;
+            this.obic7TextNumberSiireZeiTumiageKBN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.obic7TextNumberSiireZeiTumiageKBN.Value = null;
+            this.obic7TextNumberSiireZeiTumiageKBN.VisibleFalseLock = false;
+            this.obic7TextNumberSiireZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetailSearch_Enter);
+            this.obic7TextNumberSiireZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextNumberCalcKBN_Validating);
+            // 
+            // obic7ButtonWithLogicSiireZeiTumiageKBNSearch
+            // 
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.ColumnNumber = 0;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.EnableFalseLock = false;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Location = new System.Drawing.Point(240, 46);
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Name = "obic7ButtonWithLogicSiireZeiTumiageKBNSearch";
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Obic7JobSecurity = Obic7fx.Com.A0000.Tool.Obic7JobSecurities.NoSecurity;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Size = new System.Drawing.Size(24, 23);
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.TabIndex = 2025;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Text = "...";
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.UseVisualStyleBackColor = true;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.VisibleFalseLock = false;
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Click += new System.EventHandler(this.obic7ButtonWithLogicCalcKBNSearch_Click);
+            this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch.Enter += new System.EventHandler(this.controlDetail_Enter);
             // 
             // obic7LabelStringSiireZeiTumiageKBNName
             // 
@@ -382,11 +436,11 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringSiireZeiTumiageKBNName.EnableFalseLock = false;
             this.obic7LabelStringSiireZeiTumiageKBNName.ErrorString = null;
             this.obic7LabelStringSiireZeiTumiageKBNName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.obic7LabelStringSiireZeiTumiageKBNName.Location = new System.Drawing.Point(246, 48);
+            this.obic7LabelStringSiireZeiTumiageKBNName.Location = new System.Drawing.Point(264, 48);
             this.obic7LabelStringSiireZeiTumiageKBNName.Name = "obic7LabelStringSiireZeiTumiageKBNName";
             this.obic7LabelStringSiireZeiTumiageKBNName.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
             this.obic7LabelStringSiireZeiTumiageKBNName.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
-            this.obic7LabelStringSiireZeiTumiageKBNName.Size = new System.Drawing.Size(300, 19);
+            this.obic7LabelStringSiireZeiTumiageKBNName.Size = new System.Drawing.Size(282, 19);
             this.obic7LabelStringSiireZeiTumiageKBNName.TabIndex = 1000000104;
             this.obic7LabelStringSiireZeiTumiageKBNName.Value = "";
             this.obic7LabelStringSiireZeiTumiageKBNName.VisibleFalseLock = false;
@@ -409,36 +463,61 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.Value = "R5.10.1以後売上消費税計算方式";
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption.VisibleFalseLock = false;
             // 
-            // obic7TextStringR5NenOctIgoUriageZeiTumiageKBN
+            // obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN
             // 
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowAlphabet = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowKana = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowNumber = true;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowSymbol = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowUnicode = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AllowZenkaku = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AttachedButton = null;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AttachedLabel = this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.AttachedSearchDialog = null;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.CheckOnClose = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.ColumnNumber = 0;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.DispFuriganaText = null;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.EnableFalseLock = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.ErrorString = null;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.IsKeyColumn = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Location = new System.Drawing.Point(222, 72);
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.MaxLengthByte = 1;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Name = "obic7TextStringR5NenOctIgoUriageZeiTumiageKBN";
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.TabIndex = 2030;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Value = "";
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.VisibleFalseLock = false;
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetail_Enter);
-            this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextStringCalcKBN_Validating);
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.AttachedButton = this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.AttachedCopyText = null;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.AttachedLabel = null;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.AttachedSearchDialog = null;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.CheckOnClose = false;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.ColumnNumber = 0;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.EnableFalseLock = false;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.ErrorString = null;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Format = "0";
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.IsKeyColumn = false;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Location = new System.Drawing.Point(222, 72);
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.MaxLengthByte = 1;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.MaxValue = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.MinusColor = System.Drawing.Color.Red;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Name = "obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN";
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.TabIndex = 2030;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Value = null;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.VisibleFalseLock = false;
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetailSearch_Enter);
+            this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextNumberCalcKBN_Validating);
+            // 
+            // obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch
+            // 
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.ColumnNumber = 0;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.EnableFalseLock = false;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Location = new System.Drawing.Point(240, 70);
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Name = "obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch";
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Obic7JobSecurity = Obic7fx.Com.A0000.Tool.Obic7JobSecurities.NoSecurity;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Size = new System.Drawing.Size(24, 23);
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.TabIndex = 2035;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Text = "...";
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.UseVisualStyleBackColor = true;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.VisibleFalseLock = false;
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Click += new System.EventHandler(this.obic7ButtonWithLogicCalcKBNSearch_Click);
+            this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch.Enter += new System.EventHandler(this.controlDetail_Enter);
             // 
             // obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName
             // 
@@ -448,11 +527,11 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.EnableFalseLock = false;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.ErrorString = null;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Location = new System.Drawing.Point(246, 72);
+            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Location = new System.Drawing.Point(264, 72);
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Name = "obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName";
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
-            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Size = new System.Drawing.Size(300, 19);
+            this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Size = new System.Drawing.Size(282, 19);
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.TabIndex = 1000000106;
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.Value = "";
             this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName.VisibleFalseLock = false;
@@ -475,36 +554,61 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.Value = "R5.10.1以後仕入消費税計算方式";
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption.VisibleFalseLock = false;
             // 
-            // obic7TextStringR5NenOctIgoSiireZeiTumiageKBN
+            // obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN
             // 
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowAlphabet = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowKana = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowNumber = true;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowSymbol = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowUnicode = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AllowZenkaku = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AttachedButton = null;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AttachedLabel = this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.AttachedSearchDialog = null;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.CheckOnClose = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.ColumnNumber = 0;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.DispFuriganaText = null;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.EnableFalseLock = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.ErrorString = null;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.IsKeyColumn = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Location = new System.Drawing.Point(222, 96);
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.MaxLengthByte = 1;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Name = "obic7TextStringR5NenOctIgoSiireZeiTumiageKBN";
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.TabIndex = 2040;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Value = "";
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.VisibleFalseLock = false;
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetail_Enter);
-            this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextStringCalcKBN_Validating);
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.AttachedButton = this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.AttachedCopyText = null;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.AttachedLabel = null;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.AttachedSearchDialog = null;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.CheckOnClose = false;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.ColumnNumber = 0;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.EnableFalseLock = false;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.EnterColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.ErrorString = null;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Format = "0";
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.IsKeyColumn = false;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.LeaveColor = System.Drawing.SystemColors.Window;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Location = new System.Drawing.Point(222, 96);
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.MaxLengthByte = 1;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.MaxValue = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.MinusColor = System.Drawing.Color.Red;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Name = "obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN";
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Size = new System.Drawing.Size(18, 19);
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.TabIndex = 2040;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Value = null;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.VisibleFalseLock = false;
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Enter += new System.EventHandler(this.controlDetailSearch_Enter);
+            this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN.Validating += new System.ComponentModel.CancelEventHandler(this.obic7TextNumberCalcKBN_Validating);
+            // 
+            // obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch
+            // 
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.ColumnNumber = 0;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.EnableFalseLock = false;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Location = new System.Drawing.Point(240, 94);
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Name = "obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch";
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Obic7JobSecurity = Obic7fx.Com.A0000.Tool.Obic7JobSecurities.NoSecurity;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Size = new System.Drawing.Size(24, 23);
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.TabIndex = 2045;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Text = "...";
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.UseVisualStyleBackColor = true;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.VisibleFalseLock = false;
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Click += new System.EventHandler(this.obic7ButtonWithLogicCalcKBNSearch_Click);
+            this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch.Enter += new System.EventHandler(this.controlDetail_Enter);
             // 
             // obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName
             // 
@@ -514,11 +618,11 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.EnableFalseLock = false;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.ErrorString = null;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Location = new System.Drawing.Point(246, 96);
+            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Location = new System.Drawing.Point(264, 96);
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Name = "obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName";
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Obic7Styles = Obic7fx.Win.A0000.Tool.UI.Obic7Styles.Normal;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Padding = new System.Windows.Forms.Padding(2, 4, 0, 0);
-            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Size = new System.Drawing.Size(300, 19);
+            this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Size = new System.Drawing.Size(282, 19);
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.TabIndex = 1000000108;
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.Value = "";
             this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName.VisibleFalseLock = false;
@@ -610,16 +714,20 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
             // 
             this.obic7GroupBoxShouhizeiCalc.ColumnNumber = 0;
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringUriageZeiTumiageKBNCaption);
-            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextStringUriageZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextNumberUriageZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7ButtonWithLogicUriageZeiTumiageKBNSearch);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringUriageZeiTumiageKBNName);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringSiireZeiTumiageKBNCaption);
-            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextStringSiireZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextNumberSiireZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7ButtonWithLogicSiireZeiTumiageKBNSearch);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringSiireZeiTumiageKBNName);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption);
-            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextStringR5NenOctIgoUriageZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption);
-            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextStringR5NenOctIgoSiireZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN);
+            this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch);
             this.obic7GroupBoxShouhizeiCalc.Controls.Add(this.obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName);
             this.obic7GroupBoxShouhizeiCalc.EnableFalseLock = false;
             this.obic7GroupBoxShouhizeiCalc.Location = new System.Drawing.Point(54, 27);
@@ -694,16 +802,20 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringZigyoushoName;
         private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicDisp;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringUriageZeiTumiageKBNCaption;
-        private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringUriageZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber obic7TextNumberUriageZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicUriageZeiTumiageKBNSearch;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringUriageZeiTumiageKBNName;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringSiireZeiTumiageKBNCaption;
-        private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringSiireZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber obic7TextNumberSiireZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicSiireZeiTumiageKBNSearch;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringSiireZeiTumiageKBNName;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNCaption;
-        private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringR5NenOctIgoUriageZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber obic7TextNumberR5NenOctIgoUriageZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicR5NenOctIgoUriageZeiTumiageKBNSearch;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringR5NenOctIgoUriageZeiTumiageKBNName;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNCaption;
-        private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringR5NenOctIgoSiireZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.UI.Obic7TextNumber obic7TextNumberR5NenOctIgoSiireZeiTumiageKBN;
+        private Obic7fx.Win.A0000.Tool.Logic.UI.Obic7ButtonWithLogic obic7ButtonWithLogicR5NenOctIgoSiireZeiTumiageKBNSearch;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringR5NenOctIgoSiireZeiTumiageKBNName;
         private Obic7fx.Win.A0000.Tool.UI.Obic7LabelString obic7LabelStringTorihikisakiCDCaption;
         private Obic7fx.Win.A0000.Tool.UI.Obic7TextString obic7TextStringTorihikisakiCD;

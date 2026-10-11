@@ -248,7 +248,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
         {
             StringBuilder sqlSelect = new StringBuilder();
             sqlSelect.AppendLine(" SELECT TOP 1 ");
-            sqlSelect.AppendLine("        TorihikisakiName ");
+            sqlSelect.AppendLine("        TorihikisakiName1 ");
             sqlSelect.AppendLine(" FROM   P0000MS_Torihikisaki ");
             sqlSelect.AppendLine(" WHERE  TorihikisakiCD = " + ComTool.Function.SqlEscapeVarchar(this.obic7TextStringTorihikisakiCD.Value) + " ");
             sqlSelect.AppendLine("   AND  TorihikisakiKaiteiDate <= " + ComTool.Function.SqlEscapeDatetime(this.obic7TextDatetimeBaseDate.Value) + " ");
@@ -277,7 +277,7 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                     return "取引先マスタに存在しない取引先コードです(基準日時点)。";
                 }
 
-                string torihikisakiName = ComTool.Function.AnyToString(torihikisakiData.Rows[0]["TorihikisakiName"]);
+                string torihikisakiName = ComTool.Function.AnyToString(torihikisakiData.Rows[0]["TorihikisakiName1"]);
                 if (String.IsNullOrEmpty(torihikisakiName))
                 {
                     //取引先名がNULL(廃止)

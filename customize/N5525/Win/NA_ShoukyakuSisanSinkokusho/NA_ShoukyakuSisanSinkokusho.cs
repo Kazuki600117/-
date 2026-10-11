@@ -7,7 +7,7 @@
 //  2017/12/27  修正        Y.Kunihiro  (86607)申告資産が０件となった自治体の課税台帳ファイルの「種類別明細書ファイル名」にファイル名がセットされる件の修正
 //  2026/10/11  変更                    (5525)事業所別償却資産申告対応
 //                                      N0000 標準画面を複製。ファイル出力で出力区分＝事業所別の場合、事業所ごとにファイルを分割して出力する
-//                                      カスタマイズSEQを 5525 に変更(メッセージ取得は標準 0000 のまま)
+//                                      カスタマイズSEQを 5525 に変更(メッセージ取得・DBアクセスは標準 0000 のまま)
 //
 
 using System;
@@ -75,8 +75,8 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
         //  2026/10/11  変更  (5525)事業所別償却資産申告対応 開始
         //private const string CUSTOMAIZE_SEQ = "0000";
         private const string CUSTOMAIZE_SEQ = "5525";
-        //メッセージ取得用カスタマイズSEQ(メッセージは標準 0000 の定義を使用する)
-        private const string MESSAGE_SEQ = "0000";
+        //標準カスタマイズSEQ(メッセージ取得・DBアクセスは標準 0000 を使用する)
+        private const string STANDARD_SEQ = "0000";
         //  2026/10/11  変更  (5525)事業所別償却資産申告対応 終了
         //メッセージCD1
         private const string MESSAGECD1 = "000";
@@ -145,7 +145,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
         private void InitializeForm()
         {
             //DB接続クラスをインスタンス化
-            businessDB = new WinToolLogic.DBAccess(SYSTEM_CATEGORY_CD, CUSTOMAIZE_SEQ, ComToolLogic.DBAccess.Obic7DBAccessDBCategory.Business);
+            businessDB = new WinToolLogic.DBAccess(SYSTEM_CATEGORY_CD, STANDARD_SEQ, ComToolLogic.DBAccess.Obic7DBAccessDBCategory.Business);
             //履歴更新トリガを無効にする
             businessDB.IsNotUseTrigger = true;
 
@@ -317,7 +317,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                 else
                 {
                     //データがない場合、、メッセージを表示し終了する
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00160", null, null, this.GetType()
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00160", null, null, this.GetType()
                                    , WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK
                                    , WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1
                                    );
@@ -594,7 +594,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                 if (InputCheck(1))
                 {
                     //確認メッセージ
-                    if (WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00168", null, null, GetType(),
+                    if (WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00168", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.No)
                     {
@@ -616,7 +616,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //完了メッセージの表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00164", null, null, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00164", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                 }
@@ -707,7 +707,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     //【ストアドにて業務ロジック以外のエラー（システムエラー）発生時は、ここで例外を処理する。】
 
                     //メッセージボックス表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00119", null, errorMsgDetail, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00119", null, errorMsgDetail, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
 
@@ -737,7 +737,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //データがなければエラー処理
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00107", null, null, this.GetType()
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00107", null, null, this.GetType()
                                                         , Obic7fx.Win.A0000.Tool.Logic.UI.Obic7MessageBox.Obic7MessageBoxButtons.OK
                                                         , Obic7fx.Win.A0000.Tool.Logic.UI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1
                                                         );
@@ -893,7 +893,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
             //  2017/12/27  修正  Y.Kunihiro    (86607)申告資産が０件となった自治体の課税台帳ファイルの「種類別明細書ファイル名」にファイル名がセットされる件の修正 開始
             {
                 //データがなければエラー処理
-                WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00107", null, null, this.GetType()
+                WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00107", null, null, this.GetType()
                                                     , Obic7fx.Win.A0000.Tool.Logic.UI.Obic7MessageBox.Obic7MessageBoxButtons.OK
                                                     , Obic7fx.Win.A0000.Tool.Logic.UI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1
                                                     );
@@ -939,7 +939,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                 {
                     object[] obj = new object[1];
                     obj[0] = existsFile.ToString();
-                    if (WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "03176", null, obj, GetType(),
+                    if (WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "03176", null, obj, GetType(),
                                      WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo,
                                      WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.No)
                     {
@@ -1218,7 +1218,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
             if (!MinyuryokuCheck(isNeedFocusSet, shoriKBN))
             //2012/11/05 E.Sato ED
             {
-                WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00103", null, null, this.GetType()
+                WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00103", null, null, this.GetType()
                                                    , WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK
                                                    , WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1
                                                    );
@@ -1979,7 +1979,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
             //メッセージクラス
             ComToolLogic.Message message = new ComToolLogic.Message();
             //メッセージを取得
-            message.GetMessage(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, errorCD2, param, null);
+            message.GetMessage(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, errorCD2, param, null);
             //エラープロバイダを表示する
             WinToolUI.Obic7ErrorProvider.SetError(errorControl, message.MessageSummary);
         }
@@ -2289,7 +2289,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
             }
 
             WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD
-                                                , MESSAGE_SEQ
+                                                , STANDARD_SEQ
                                                 , ComTool.Function.AnyToString(errorCD1.Value)
                                                 , ComTool.Function.AnyToString(errorCD2.Value)
                                                 , objErrSummary
@@ -2406,7 +2406,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //メッセージボックス表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00119", null, null, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00119", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                     return false;
@@ -2467,7 +2467,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //メッセージボックス表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00119", null, null, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00119", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                     return false;
@@ -2528,7 +2528,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //メッセージボックス表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00119", null, null, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00119", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                     return false;
@@ -2590,7 +2590,7 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
                     }
 
                     //メッセージボックス表示
-                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, MESSAGE_SEQ, MESSAGECD1, "00119", null, null, GetType(),
+                    WinToolLogicUI.Obic7MessageBox.Show(SYSTEM_CATEGORY_CD, STANDARD_SEQ, MESSAGECD1, "00119", null, null, GetType(),
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                          WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                     return false;

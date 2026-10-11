@@ -40,9 +40,10 @@
 
 | 用途 | 定数 | 値 |
 |---|---|---|
-| DBアクセス（`DBAccess`）・操作ログ（`Log.FixedOutPut`） | `CUSTOMAIZE_SEQ`（償却資産申告書）／`CUSTOM_SEQ`（資産事業所マスタメンテ） | `5525` |
-| メッセージ取得（`Obic7MessageBox.Show`・`Message.GetMessage`） | `MESSAGE_SEQ`（両画面） | `0000`（標準のメッセージ定義を使用） |
+| 操作ログ（`Log.FixedOutPut`、償却資産申告書のみ） | `CUSTOMAIZE_SEQ` | `5525` |
+| DBアクセス（`DBAccess`）・メッセージ取得（`Obic7MessageBox.Show`・`Message.GetMessage`） | `STANDARD_SEQ`（両画面） | `0000`（標準と同じ） |
 
+資産事業所マスタメンテの `CUSTOM_SEQ`（5525）は現在どこからも参照していない（ログ出力がないため）。
 メッセージは標準（SEQ 0000）の定義をそのまま使うため、SEQ 5525 へのメッセージ登録は不要。
 
 ## 導入手順

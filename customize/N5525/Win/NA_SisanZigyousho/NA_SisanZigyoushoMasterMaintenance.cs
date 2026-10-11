@@ -36,7 +36,7 @@
 //                        ・「地方税申告(連携)」項目(納税者コード、利用者ID、代表者資格、代表者郵便番号・住所・電話番号)を追加
 //                          事業所別地方税申告情報マスタ(N5525MS_NA_ZigyoushoSinkokuJouhou)へ資産事業所マスタと同一トランザクションで登録・削除する
 //                          地方税申告(連携)項目がすべて未入力の場合はレコードを持たない(償却資産申告書では空欄で出力)
-//                        ・カスタマイズSEQを 5525 に変更(メッセージ取得は標準 0000 のまま)
+//                        ・カスタマイズSEQを 5525 に変更(メッセージ取得・DBアクセスは標準 0000 のまま)
 
 
 using System;
@@ -87,8 +87,8 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
         // 2026/10/11 変更 (5525)事業所別償却資産申告対応 開始
         //private const string CUSTOM_SEQ = "0000";
         private const string CUSTOM_SEQ = "5525";
-        //メッセージ取得用カスタマイズナンバー(メッセージは標準 0000 の定義を使用する)
-        private const string MESSAGE_SEQ = "0000";
+        //標準カスタマイズナンバー(メッセージ取得・DBアクセスは標準 0000 を使用する)
+        private const string STANDARD_SEQ = "0000";
         // 2026/10/11 変更 (5525)事業所別償却資産申告対応 終了
 
         // 2026/10/11 追加 (5525)事業所別償却資産申告対応 開始
@@ -1227,7 +1227,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
             //メッセージクラスをインスタンス化
             ComToolLogic.Message message = new ComToolLogic.Message();
             //メッセージを取得
-            message.GetMessage(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, messageCD2, messageParameters, null);
+            message.GetMessage(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, messageCD2, messageParameters, null);
             //エラープロバイダの表示
             WinToolUI.Obic7ErrorProvider.SetError(control, message.MessageSummary);
         }
@@ -1468,7 +1468,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
             int deleteCount = 0;
 
             //確認メッセージ
-            if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00111", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00111", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 //削除処理
                 //トランザクション開始
@@ -1489,7 +1489,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
                     {
                         //更新件数が0件の場合
                         //エラーメッセージの表示
-                        WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00102", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
+                        WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00102", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                         //ロールバック
                         this.businessDB.RollBackTransaction();
                         //明細部をクリア
@@ -1587,7 +1587,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
             else
             {
                 //確認メッセージ
-                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00113", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00113", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
                     //Yesの場合
                     //明細部をクリア
@@ -1639,7 +1639,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
             {
                 //エラーが無かった場合
                 //確認メッセージの表示
-                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00112", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00112", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
                     //トランザクション開始
                     this.businessDB.BeginTransaction();
@@ -1716,7 +1716,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
                 //表示するべきメッセージが存在していればメッセージを表示する
                 if (!String.IsNullOrEmpty(errorCD2))
                 {
-                    WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, errorCD2, null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
+                    WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, errorCD2, null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                 }
             }
         }        
@@ -1836,7 +1836,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
         private void NA_SisanZigyoushoMasterMaintenance_Load(object sender, EventArgs e)
         {
             //DBアクセスクラス（ステートフル）のインスタンスを作成
-            this.businessDB = new WinToolLogic.DBAccess(SYS_BUNRUI, CUSTOM_SEQ, ComToolLogic.DBAccess.Obic7DBAccessDBCategory.Business);
+            this.businessDB = new WinToolLogic.DBAccess(SYS_BUNRUI, STANDARD_SEQ, ComToolLogic.DBAccess.Obic7DBAccessDBCategory.Business);
 
             //初期処理
             //処理モードに「新規」と表示させる
@@ -1902,7 +1902,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
             //編集内容があれば確認メッセージを表示する
             if ((this.obic7TextStringZititaiCD.Enabled == true) && (this.obic7TextStringZititaiCD.ReadOnly == false))
             {
-                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00110", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) != DialogResult.Yes)
+                if (WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00110", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.YesNo, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1) != DialogResult.Yes)
                 {
                     //Yes以外を選択した場合はフォームを閉じる処理をキャンセル
                     e.Cancel = true;
@@ -1988,7 +1988,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
                     if (!String.IsNullOrEmpty(messageCD2))
                     {
                         //エラーメッセージの表示
-                        WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, messageCD2, null, null, this.GetType(),
+                        WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, messageCD2, null, null, this.GetType(),
                                                             WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                             WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                     }
@@ -2066,7 +2066,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
                         if (!String.IsNullOrEmpty(messageCD2))
                         {
                             //エラーメッセージの表示
-                            WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, messageCD2, null, null, this.GetType(),
+                            WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, messageCD2, null, null, this.GetType(),
                                                                 WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK,
                                                                 WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                         }
@@ -2240,7 +2240,7 @@ namespace Obic7fx.Win.N5525.MasterM.NA_SisanZigyousho
                         else
                         {
                             //エラーメッセージを表示
-                            WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, MESSAGE_SEQ, MESSAGECD1, "00028", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
+                            WinToolLogicUI.Obic7MessageBox.Show(SYS_BUNRUI, STANDARD_SEQ, MESSAGECD1, "00028", null, null, this.GetType(), WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxButtons.OK, WinToolLogicUI.Obic7MessageBox.Obic7MessageBoxDefaultButton.Button1);
                             //イベントをキャンセルする
                             e.Cancel = true;
                         }

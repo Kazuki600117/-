@@ -25,3 +25,9 @@
 **/MA_ZigyoushoSeigyo/Properties/*.cs                !working-tree-encoding
 **/MA_ZigyoushoSeigyo/Properties/*.resx              -text
 **/MA_ZigyoushoSeigyo/Properties/*.settings          -text
+
+# 本支店仕訳入力は .cs がすべて UTF-8(BOM付き) のため、CP932 変換の対象外とする
+**/MA_HonsitenSiwake/*.cs                            !working-tree-encoding
+**/MA_HonsitenSiwake/Properties/*.cs                 !working-tree-encoding
+**/MA_HonsitenSiwake/Properties/*.resx               -text
+**/MA_HonsitenSiwake/Properties/*.settings           -text

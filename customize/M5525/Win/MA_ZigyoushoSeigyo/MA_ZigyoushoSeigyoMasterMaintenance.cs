@@ -623,6 +623,8 @@ namespace Obic7fx.Win.M5525.MasterM.MA_ZigyoushoSeigyo
                 using (P0000Search.TorihikisakiCD torihikisakiCDdlg = new P0000Search.TorihikisakiCD())
                 {
                     textAbstract.AttachedSearchDialog = torihikisakiCDdlg;
+                    //基準日(画面の基準日を引き継ぐ)
+                    torihikisakiCDdlg.BasicDate = (DateTime)this.obic7TextDatetimeBaseDate.Value;
                     if (textAbstract.ShowDialog() == DialogResult.OK)
                     {
                         //OK押下時、次の項目へフォーカスを移動

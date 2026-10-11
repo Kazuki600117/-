@@ -7,6 +7,7 @@
 //  2017/12/27  修正        Y.Kunihiro  (86607)申告資産が０件となった自治体の課税台帳ファイルの「種類別明細書ファイル名」にファイル名がセットされる件の修正
 //  2026/10/11  変更                    (5525)事業所別償却資産申告対応
 //                                      N0000 標準画面を複製。ファイル出力で出力区分＝事業所別の場合、事業所ごとにファイルを分割して出力する
+//                                      カスタマイズSEQを 5525 に変更
 //
 
 using System;
@@ -71,7 +72,10 @@ namespace Obic7fx.Win.N5525.Print.NA_ShoukyakuSisanSinkokusho
         //システム分類
         private const string SYSTEM_CATEGORY_CD = "N";
         //カスタマイズSEQ
-        private const string CUSTOMAIZE_SEQ = "0000";
+        //  2026/10/11  変更  (5525)事業所別償却資産申告対応 開始
+        //private const string CUSTOMAIZE_SEQ = "0000";
+        private const string CUSTOMAIZE_SEQ = "5525";
+        //  2026/10/11  変更  (5525)事業所別償却資産申告対応 終了
         //メッセージCD1
         private const string MESSAGECD1 = "000";
 

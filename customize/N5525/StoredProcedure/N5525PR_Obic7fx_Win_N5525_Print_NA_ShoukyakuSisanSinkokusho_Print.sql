@@ -93,6 +93,7 @@ AS
 **              2026/10/11              変更  (5525)事業所別償却資産申告対応
 **                                            N0000 標準ストアドを複製し、ファイル出力(eLTax)で出力区分＝事業所別の場合に
 **                                            申告者情報を資産事業所マスタ、電子申告情報を事業所別地方税申告情報マスタから出力する
+**                                            （印刷と同じく、事業所のレコードが存在しない場合は空欄。全社の値は使用しない）
 **                                            ファイル分割用に末尾へ[N5525_事業所コード]列を出力する（画面側で削除してから出力）
 **
 ***************************************************************************************************
@@ -2387,7 +2388,7 @@ BEGIN
             LEFT JOIN M0000MS_MA_Zigyousho ZIG
             ON  ZIG.ZigyoushoCD = ZIGSUB.ZigyoushoCD
             AND ZIG.KaiteiDate  = ZIGSUB.MAX_KaiteiDate
-            -- 申告者情報：出力区分＝事業所別かつ資産事業所マスタが存在する場合は資産事業所マスタ、それ以外は全社（固定資産コントロール・会計コントロール）
+            -- 申告者情報：出力区分＝事業所別の場合は資産事業所マスタ（存在しない場合は空欄。印刷と同じ）、全社の場合は固定資産コントロール・会計コントロール
             CROSS APPLY (
                 SELECT
                      SZG.CompanyKanaName      AS CompanyKanaName
@@ -2416,7 +2417,6 @@ BEGIN
                     ,SZG.KaikeiZimushoTELNO2  AS KaikeiZimushoTELNO2
                     ,SZG.KaikeiZimushoTELNO3  AS KaikeiZimushoTELNO3
                 WHERE @p_ShuturyokuKBN = 1
-                AND   SZG.ZigyoushoCD IS NOT NULL
                 UNION ALL
                 SELECT
                      KTC.CompanyKanaName
@@ -2444,9 +2444,9 @@ BEGIN
                     ,KTC.KaikeiZimushoTELNO1
                     ,KTC.KaikeiZimushoTELNO2
                     ,KTC.KaikeiZimushoTELNO3
-                WHERE NOT (@p_ShuturyokuKBN = 1 AND SZG.ZigyoushoCD IS NOT NULL)
+                WHERE ISNULL(@p_ShuturyokuKBN, 0) <> 1
             ) SNK
-            -- 電子申告情報：出力区分＝事業所別かつ事業所別地方税申告情報マスタが存在する場合は同マスタ、それ以外は固定資産コントロールマスタ
+            -- 電子申告情報：出力区分＝事業所別の場合は事業所別地方税申告情報マスタ（存在しない場合は空欄）、全社の場合は固定資産コントロールマスタ
             CROSS APPLY (
                 SELECT
                      ZSJ.NouzeishaCD          AS NouzeishaCD
@@ -2460,7 +2460,6 @@ BEGIN
                     ,ZSJ.DaihyoushaTELNO2     AS DaihyoushaTELNO2
                     ,ZSJ.DaihyoushaTELNO3     AS DaihyoushaTELNO3
                 WHERE @p_ShuturyokuKBN = 1
-                AND   ZSJ.ZigyoushoCD IS NOT NULL
                 UNION ALL
                 SELECT
                      KTC.NouzeishaCD
@@ -2473,7 +2472,7 @@ BEGIN
                     ,KTC.DaihyoushaTELNO1
                     ,KTC.DaihyoushaTELNO2
                     ,KTC.DaihyoushaTELNO3
-                WHERE NOT (@p_ShuturyokuKBN = 1 AND ZSJ.ZigyoushoCD IS NOT NULL)
+                WHERE ISNULL(@p_ShuturyokuKBN, 0) <> 1
             ) DEN
             --2026/10/11 (5525)事業所別償却資産申告対応 ↑
 --  2018/05/14 T.Maeda      (97532-97643)改元対応(元号マスタを結合)↓↓
